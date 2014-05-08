@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vehicle.Concrete;
 
-namespace TyrePressureMonitoringSystem.Test
+namespace Vehicle.Test
 {
     [TestClass]
     public class TyrePressureMonitoringSystemTests
@@ -12,30 +12,36 @@ namespace TyrePressureMonitoringSystem.Test
 
             var alarmListener = new MockAlarmListener();
 
-            var sensor = new TyrePressureSensor(alarmListener)
-                {
-                    thresholdMax = 20,
-                    thresholdMin = 5
-                };
+            Tyres tyres = createVehicleTyres();
 
-            sensor.MonitorTyrePressure();
+            TyrePressureSensorManager tyrePressureManager = new TyrePressureSensorManager(tyres, alarmListener);
+
+            tyrePressureManager.MonitorVehicleTyres();
+
             Assert.IsTrue(alarmListener.AlarmTriggeredCalled, "alarm triggered");
         }
 
+        private Tyres createVehicleTyres()
+        {
+            var tyres = new Tyres();
+            tyres.Add("Front DS", new Tyre() { maxPsi = 40, minPsi = 10 });
+            tyres.Add("Front PS", new Tyre() { maxPsi = 40, minPsi = 10 });
+            tyres.Add("Rear DS", new Tyre() { maxPsi = 35, minPsi = 10 });
+            tyres.Add("Rear PS", new Tyre() { maxPsi = 35, minPsi = 10 });
 
+            return tyres;
+        }
 
         [TestMethod]
         public void VehicleNotifiesDashboardOfCurrentTyrePressure()
         {
             var tyrePressureDashboard = new VehicleDashboard();
 
-            var sensor = new TyrePressureSensor(tyrePressureDashboard)
-            {
-                thresholdMax = 20,
-                thresholdMin = 5
-            };
+            Tyres tyres = createVehicleTyres();
 
-            sensor.MonitorTyrePressure();
+            TyrePressureSensorManager tyrePressureManager = new TyrePressureSensorManager(tyres, tyrePressureDashboard);
+
+            tyrePressureManager.MonitorVehicleTyres();
 
             Assert.IsNotNull(tyrePressureDashboard.messageToUser);
             Assert.IsTrue(tyrePressureDashboard.makeNoiseAtUser);
@@ -45,14 +51,11 @@ namespace TyrePressureMonitoringSystem.Test
         public void VehicleAppliesBrakesWhenAlarmSounds()
         {
             var vehicleBrakingSystem = new VehicleBrakingSystem();
+            Tyres tyres = createVehicleTyres();
 
-            var sensor = new TyrePressureSensor(vehicleBrakingSystem)
-            {
-                thresholdMax = 20,
-                thresholdMin = 5
-            };
+            TyrePressureSensorManager tyrePressureManager = new TyrePressureSensorManager(tyres, vehicleBrakingSystem);
 
-            sensor.MonitorTyrePressure();
+            tyrePressureManager.MonitorVehicleTyres();
 
             Assert.IsTrue(vehicleBrakingSystem.EmergencyStop);
             Assert.AreEqual<int>(100,vehicleBrakingSystem.BrakeForceApplied);
@@ -70,13 +73,11 @@ namespace TyrePressureMonitoringSystem.Test
             tyrePressureAlarmPublisher.RegisterAlarmSubscriber(vehicleBrakingSystem);
             tyrePressureAlarmPublisher.RegisterAlarmSubscriber(vehicleDashboard);
 
-            var sensor = new TyrePressureSensor(tyrePressureAlarmPublisher)
-            {
-                thresholdMax = 20,
-                thresholdMin = 5
-            };
+            Tyres tyres = createVehicleTyres();
 
-            sensor.MonitorTyrePressure();
+            TyrePressureSensorManager tyrePressureManager = new TyrePressureSensorManager(tyres, vehicleBrakingSystem);
+
+            tyrePressureManager.MonitorVehicleTyres();
 
             Assert.IsTrue(vehicleBrakingSystem.EmergencyStop);
             Assert.AreEqual<int>(100, vehicleBrakingSystem.BrakeForceApplied);
@@ -84,17 +85,31 @@ namespace TyrePressureMonitoringSystem.Test
             Assert.IsTrue(vehicleDashboard.makeNoiseAtUser);
         }
 
-        [TestMethod]
-        public void VehicleReportsWhichTyreAlarmHasBeenTriggeredBy()
-        {
-            var vehicleDashboard = new VehicleDashboard();
+      //  [TestMethod]
+      //  public void VehicleReportsWhichTyreAlarmHasBeenTriggeredBy()
+      //  {
+      //      var vehicleDashboard = new VehicleDashboard();
+      //      var tyre = new Tyre();
 
-            var sensor = new TyrePressureSensor(tyrePressureAlarmPublisher)
-            {
-                thresholdMax = 20,
-                thresholdMin = 5
-            };
-        }
+      //      var sensor = new TyrePressureSensor(tyrePressureAlarmPublisher)
+      //      {
+      //          thresholdMax = 20,
+      //          thresholdMin = 5
+      //      };
+
+
+
+      //  }
+
+      //[TestMethod]
+      //public void VehicleCanMonitorPressureOnIndividualTyres()
+      //{
+
+
+      //    TyrePressureSensorManager manager = new TyrePressureSensorManager(Tyres);
+
+
+      //}
 
     }
 }

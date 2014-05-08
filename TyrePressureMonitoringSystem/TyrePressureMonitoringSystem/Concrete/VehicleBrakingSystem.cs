@@ -1,4 +1,5 @@
-﻿using Vehicle.Interfaces;
+﻿using Vehicle.Concrete;
+using Vehicle.Interfaces;
 
 namespace Vehicle.Concrete
 {

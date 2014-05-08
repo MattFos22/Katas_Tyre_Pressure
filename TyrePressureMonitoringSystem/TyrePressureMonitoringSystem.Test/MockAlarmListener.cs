@@ -5,7 +5,7 @@ using System.Text;
 using Vehicle.Concrete;
 using Vehicle.Interfaces;
 
-namespace TyrePressureMonitoringSystem.Test
+namespace Vehicle.Test
 {
     public class MockAlarmListener:IAlarmListener
     {

@@ -6,7 +6,7 @@
     <ProjectGuid>{646CB01C-04DF-4D36-8070-F137D8B30A0A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TyrePressureMonitoringSystem.Test</RootNamespace>
+    <RootNamespace>Vehicle.Test</RootNamespace>
     <AssemblyName>TyrePressureMonitoringSystem.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -50,9 +50,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ITyreAlarmListener.cs" />
     <Compile Include="MockAlarmListener.cs" />
+    <Compile Include="MonitoredTyre.cs" />
+    <Compile Include="Tyre.cs" />
     <Compile Include="TyrePressureMonitoringSystemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TyrePressureSensorManager.cs" />
+    <Compile Include="Tyres.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TyrePressureMonitoringSystem\Vehicle.csproj">

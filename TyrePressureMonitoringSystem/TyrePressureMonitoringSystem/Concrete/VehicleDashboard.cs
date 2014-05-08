@@ -14,7 +14,7 @@ namespace Vehicle.Concrete
 
         public void AlarmTriggered(Alarm alarm)
         {
-            messageToUser = string.Format("Current Psi of {0} exceeds thresholds set on date: {1}", alarm.RecordedPsi, alarm.DateOfAlarm);
+            messageToUser = string.Format("Current Psi of {0} exceeds thresholds set on date: {1}", alarm.Message, alarm.DateOfAlarm);
             makeNoiseAtUser = true;
         }
     }
