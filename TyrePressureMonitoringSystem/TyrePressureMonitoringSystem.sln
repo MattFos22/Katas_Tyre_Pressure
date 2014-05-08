@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TyrePressureMonitoringSystem", "TyrePressureMonitoringSystem\TyrePressureMonitoringSystem.csproj", "{F0DB4686-E569-463C-B790-290648543DC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vehicle", "TyrePressureMonitoringSystem\Vehicle.csproj", "{F0DB4686-E569-463C-B790-290648543DC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TyrePressureMonitoringSystem.Test", "TyrePressureMonitoringSystem.Test\TyrePressureMonitoringSystem.Test.csproj", "{646CB01C-04DF-4D36-8070-F137D8B30A0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleTyrePressureMonitoringSystem.Test", "TyrePressureMonitoringSystem.Test\VehicleTyrePressureMonitoringSystem.Test.csproj", "{646CB01C-04DF-4D36-8070-F137D8B30A0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

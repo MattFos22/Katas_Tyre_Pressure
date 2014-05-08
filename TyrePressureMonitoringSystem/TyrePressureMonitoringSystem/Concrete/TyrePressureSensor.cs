@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Vehicle.Interfaces;
 
-namespace TyrePressureMonitoringSystem.Test
+namespace Vehicle.Concrete
 {
-    public class FakeSensor
+    public class TyrePressureSensor
     {
         public int thresholdMax { get; set; }
         public int thresholdMin { get; set; }
         
         private readonly IAlarmListener _listener;
 
-        public FakeSensor(IAlarmListener listener)
+        public TyrePressureSensor(IAlarmListener listener)
         {
             _listener = listener;
         }
 
-        public void MonitorTemperatures()
+        public void MonitorTyrePressure()
         {
             var random = new Random();
             while(1==1)

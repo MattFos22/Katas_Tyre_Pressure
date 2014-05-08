@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Vehicle.Concrete;
+using Vehicle.Interfaces;
 
 namespace TyrePressureMonitoringSystem.Test
 {

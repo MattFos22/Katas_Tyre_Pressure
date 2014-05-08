@@ -50,20 +50,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Alarm.cs" />
-    <Compile Include="FakeSensor.cs" />
-    <Compile Include="IAlarmListener.cs" />
-    <Compile Include="ISensor.cs" />
-    <Compile Include="AlarmPublisher.cs" />
     <Compile Include="MockAlarmListener.cs" />
-    <Compile Include="TyrePressureDashboard.cs" />
     <Compile Include="TyrePressureMonitoringSystemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TyrePressureMonitoringSystem\TyrePressureMonitoringSystem.csproj">
+    <ProjectReference Include="..\TyrePressureMonitoringSystem\Vehicle.csproj">
       <Project>{f0db4686-e569-463c-b790-290648543dc7}</Project>
-      <Name>TyrePressureMonitoringSystem</Name>
+      <Name>Vehicle</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

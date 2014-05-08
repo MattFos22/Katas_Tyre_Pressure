@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Vehicle.Interfaces;
+using Vehicle.Concrete;
 
-namespace TyrePressureMonitoringSystem.Test
+namespace Vehicle.Concrete
 {
-    public class TyrePressureDashboard : IAlarmListener
+    public class VehicleDashboard : IAlarmListener
     {
         public string messageToUser { get; private set; }
         public bool makeNoiseAtUser { get; private set; }
