@@ -9,6 +9,6 @@ namespace Vehicle.Interfaces
 {
     public interface ITyrePressureAlarmListener
     {
-        void AlarmTriggered(TyrePressureAlarm alarm);
+        void TyrePressureAlarmTriggered(TyrePressureAlarm alarm);
     }
 }

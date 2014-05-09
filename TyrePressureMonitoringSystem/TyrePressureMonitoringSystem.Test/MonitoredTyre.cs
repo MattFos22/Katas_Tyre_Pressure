@@ -10,14 +10,14 @@ namespace Vehicle.Test
     public class MonitoredTyre : ITyrePressureAlarmListener
     {
         private Tyre _tyre {get; set;}
-        private TyrePressureSensor _sensor {get; set;}
+        private TyrePressureSensor _sensor {get;set;}
 
         private readonly IAlarmListener _listener;
     
-        public MonitoredTyre(Tyre tyre, TyrePressureSensor sensor, IAlarmListener listener)
+        public MonitoredTyre(Tyre tyre, IAlarmListener listener)
 	    {
             _tyre = tyre;
-            _sensor = sensor;
+            _sensor = new TyrePressureSensor(this);
             _listener = listener;
 	    }
 
@@ -26,14 +26,15 @@ namespace Vehicle.Test
             _sensor.MonitorTyrePressure();
         }
 
-        public void AlarmTriggered(TyrePressureAlarm alarm)
+        public void TyrePressureAlarmTriggered(TyrePressureAlarm alarm)
         {
             _listener.AlarmTriggered(alarm);  
         }
 
-        public void AlarmTriggered(Alarm alarm)
+        public int GetCurrentPressure()
         {
-            throw new NotImplementedException();
+            return _sensor.pressureCurrent;
         }
+
     }
 }

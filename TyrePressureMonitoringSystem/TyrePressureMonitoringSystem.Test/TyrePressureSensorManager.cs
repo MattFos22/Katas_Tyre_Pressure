@@ -8,16 +8,15 @@ using Vehicle.Interfaces;
 
 namespace Vehicle.Test
 {
-    public class TyrePressureSensorManager:ITyrePressureAlarmListener
+    public class TyrePressureSensorManager
     {
         private List<MonitoredTyre> _monitoredTyres = new List<MonitoredTyre>();
-        private readonly ITyrePressureAlarmListener _listener;
 
         public TyrePressureSensorManager(Tyres tyres, IAlarmListener listener)
         {
-            foreach(Tyre t in tyres.)
-            {
-                _monitoredTyres.Add(new MonitoredTyre(t, new TyrePressureSensor(_listener),listener));
+            foreach (var t in tyres)
+            {                
+                _monitoredTyres.Add(new MonitoredTyre(t.Value, listener));
             }
         }
 
@@ -29,10 +28,6 @@ namespace Vehicle.Test
             };
         }
 
-        public void AlarmTriggered(TyrePressureAlarm alarm)
-        {
-            
-        }
 
     }
 }

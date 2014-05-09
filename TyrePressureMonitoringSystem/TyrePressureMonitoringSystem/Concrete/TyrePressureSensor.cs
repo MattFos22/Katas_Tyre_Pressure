@@ -11,6 +11,7 @@ namespace Vehicle.Concrete
     {
         public int thresholdMax { get; set; }
         public int thresholdMin { get; set; }
+        public int pressureCurrent { get; set; }
 
         private readonly ITyrePressureAlarmListener _listener;
 
@@ -24,11 +25,12 @@ namespace Vehicle.Concrete
             var random = new Random();
             while(1==1)
             {
-               var randomNumber = random.Next(1, 9999);
-               if(randomNumber >= thresholdMax | randomNumber <= thresholdMin) // if alarm sounded
+               var pressureCurrent = random.Next(1, 9999);
+               
+               if(pressureCurrent >= thresholdMax | pressureCurrent <= thresholdMin) // if alarm sounded
                {
-                   var alarm = new TyrePressureAlarm(randomNumber);
-                   _listener.AlarmTriggered(alarm);
+                   var alarm = new TyrePressureAlarm(pressureCurrent);
+                   _listener.TyrePressureAlarmTriggered(alarm);
                    break;
                }
             }

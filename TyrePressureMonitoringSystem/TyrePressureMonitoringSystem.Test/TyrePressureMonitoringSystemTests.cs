@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading;
 using Vehicle.Concrete;
 
 namespace Vehicle.Test
@@ -75,7 +76,7 @@ namespace Vehicle.Test
 
             Tyres tyres = createVehicleTyres();
 
-            TyrePressureSensorManager tyrePressureManager = new TyrePressureSensorManager(tyres, vehicleBrakingSystem);
+            TyrePressureSensorManager tyrePressureManager = new TyrePressureSensorManager(tyres, tyrePressureAlarmPublisher);
 
             tyrePressureManager.MonitorVehicleTyres();
 
@@ -101,15 +102,26 @@ namespace Vehicle.Test
 
       //  }
 
-      //[TestMethod]
-      //public void VehicleCanMonitorPressureOnIndividualTyres()
-      //{
+        [TestMethod]
+        public void VehicleCanMonitorPressureOnIndividualTyres()
+        {
+
+            var mockAlarmListener = new MockAlarmListener();
+
+            var monitoredTyre = new MonitoredTyre(new Tyre(), mockAlarmListener);
+
+            Thread t = new Thread(new ThreadStart(monitoredTyre.InitialiseMonitoring));
+            t.Start();
+
+            int currentPressure = monitoredTyre.GetCurrentPressure();
+
+            Assert.IsNotNull(monitoredTyre.GetCurrentPressure());
+            Assert.IsTrue(mockAlarmListener.AlarmTriggeredCalled);
 
 
-      //    TyrePressureSensorManager manager = new TyrePressureSensorManager(Tyres);
+        }
 
 
-      //}
 
     }
 }
